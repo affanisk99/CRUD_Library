@@ -26,8 +26,11 @@ class shelvesController extends Controller
      */
     public function create()
     {
+
+        // di method create ini nggak perlu cek lastid, lastid dicari saat simpan data aja.
         $lastid = Shelves::latest('id')->first();
-        $newID = $lastid->id+1;
+        // $newID = $lastid->id+1;
+        $newID = 1;
         $shelves = 'SH-'.$newID;
         // dd($shelves);
         return view('/shelves/create',['shelves'=>$shelves]);
@@ -41,6 +44,14 @@ class shelvesController extends Controller
      */
     public function store(Request $request)
     {
+
+        // di sini bikin logic dapetin last id
+
+
+        // setelah last id dapet, dicek dulu apakah last id nya ada atau null
+        // jika ada, dapetin last id terus ditambah 1. jika NULL maka id adalah 1
+
+
        $shelves=$this->validate($request,[
             'code'=>'required',
             'description'=>'required']);
