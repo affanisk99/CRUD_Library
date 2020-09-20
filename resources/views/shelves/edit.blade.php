@@ -16,6 +16,7 @@
 @endif
 <form action="{{route('shelves.update', $shelves->id)}}" method="post">
 	@csrf
+  Code : <br/><input type="text" name="code" value="{{$shelves->code}}" readonly=""><br/>
 	Description : <br/><input type="text" name="description" value="{{$shelves->description}}"><br/>
 	<br/><button type="submit" value="submit">SUBMIT</button>
 </form>

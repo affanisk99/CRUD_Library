@@ -46,13 +46,16 @@ class shelvesController extends Controller
 
         $lastid = Shelves::latest('id')->first();
         
-        $newID=$lastid->id+1;
+        if($lastid<'1'){
+            $newID='1';
+        }elseif ($lastid>'1') {
+            $newID=$lastid->id+'1';
+        }
         $code = 'SH-'.$newID;
         $data['code']=$code;
         $description=$this->validate($request,[
             'description'=>'required']);
-        $shelves = ($data+$description);
-        $akhir = DB::table('shelves')->insert($shelves);
+        $shelves = ($data+$description);DB::table('shelves')->insert($shelves);
         return redirect('/shelves');
     }
 

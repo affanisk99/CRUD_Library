@@ -183,7 +183,7 @@ INSERT INTO `publisher` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `shelves` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
