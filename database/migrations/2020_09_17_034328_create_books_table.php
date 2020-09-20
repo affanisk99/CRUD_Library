@@ -22,7 +22,7 @@ class CreateBooksTable extends Migration
             $table->date('release_date');
             $table->integer('category_id');
             $table->integer('publisher_id');
-            $table->integer('shelve_id');
+            $table->integer('shelves_id');
             $table->enum('is_avaliable',['yes','no']);
             $table->timestamps();
         });

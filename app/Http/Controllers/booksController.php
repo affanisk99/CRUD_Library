@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Shelves;
 
-class shelvesController extends Controller
+class booksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class shelvesController extends Controller
      */
     public function index()
     {
-       $shelves = Shelves::All();
-        return view('/shelves/index',['shelves'=>$shelves]);
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class shelvesController extends Controller
      */
     public function create()
     {
-        return view('/shelves/create');
+        //
     }
 
     /**
@@ -37,23 +34,7 @@ class shelvesController extends Controller
      */
     public function store(Request $request)
     {
-
-        // di sini bikin logic dapetin last id
-
-        
-        // setelah last id dapet, dicek dulu apakah last id nya ada atau null
-        // jika ada, dapetin last id terus ditambah 1. jika NULL maka id adalah 1
-
-        $lastid = Shelves::latest('id')->first();
-        
-        $newID=$lastid->id+1;
-        $code = 'SH-'.$newID;
-        $data['code']=$code;
-        $description=$this->validate($request,[
-            'description'=>'required']);
-        $shelves = ($data+$description);
-        $akhir = DB::table('shelves')->insert($shelves);
-        return redirect('/shelves');
+        //
     }
 
     /**
@@ -75,8 +56,7 @@ class shelvesController extends Controller
      */
     public function edit($id)
     {
-        $shelves=DB::table('shelves')->where('id',$id)->first();
-        return view ('/shelves/edit',['shelves'=>$shelves]);
+        //
     }
 
     /**
@@ -88,10 +68,7 @@ class shelvesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $shelves=$this->validate($request,[
-            'description'=>'required']);
-        DB::table('shelves')->where('id',$id)->update($shelves);
-        return redirect('/shelves');
+        //
     }
 
     /**
@@ -102,8 +79,6 @@ class shelvesController extends Controller
      */
     public function destroy($id)
     {
-        $shelves=Shelves::find($id);
-        $shelves->forceDelete();
-        return redirect('/shelves');
+        //
     }
 }
