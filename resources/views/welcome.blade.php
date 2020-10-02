@@ -89,7 +89,7 @@
                     <a href="{{route('categories.index')}}">Categories</a>
                     <a href="{{route('publisher.index')}}">Publisher</a>
                     <a href="{{route('shelves.index')}}">Shelves</a>
-                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="{{route('books.index')}}">Books</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>

@@ -24,6 +24,7 @@ class CreateBooksTable extends Migration
             $table->integer('publisher_id');
             $table->integer('shelves_id');
             $table->enum('is_avaliable',['yes','no']);
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }

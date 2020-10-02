@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShelvesTable extends Migration
+class CreatePasswordResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateShelvesTable extends Migration
      */
     public function up()
     {
-        Schema::create('shelves', function (Blueprint $table) {
-            $table->increments('id',11);
-            $table->string('code');
-            $table->string('description');
-            $table->timestamps();
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -28,6 +27,6 @@ class CreateShelvesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shelves');
+        Schema::dropIfExists('password_resets');
     }
 }

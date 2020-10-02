@@ -38,12 +38,6 @@ class shelvesController extends Controller
     public function store(Request $request)
     {
 
-        // di sini bikin logic dapetin last id
-
-        
-        // setelah last id dapet, dicek dulu apakah last id nya ada atau null
-        // jika ada, dapetin last id terus ditambah 1. jika NULL maka id adalah 1
-
         $lastid = Shelves::latest('id')->first();
         
         if($lastid<'1'){
@@ -55,7 +49,8 @@ class shelvesController extends Controller
         $data['code']=$code;
         $description=$this->validate($request,[
             'description'=>'required']);
-        $shelves = ($data+$description);DB::table('shelves')->insert($shelves);
+        $shelves = ($data+$description);
+        DB::table('shelves')->insert($shelves);
         return redirect('/shelves');
     }
 
@@ -103,10 +98,25 @@ class shelvesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function delete($id){
+        $shelves = Shelves::find($id);
+        $shelves->delete();
+        return redirect('/shelves');
+    }
+    public function bin(){
+        $shelves=Shelves::onlyTrashed()->get();
+        return view('/shelves/bin',['shelves'=>$shelves]);
+    }
+    public function rollback($id){
+        $shelves=Shelves::onlyTrashed()->where('id',$id);
+        $shelves->restore();
+        return redirect('/shelves/bin');
+    }
     public function destroy($id)
     {
-        $shelves=Shelves::find($id);
-        $shelves->forceDelete();
-        return redirect('/shelves');
+        $shelves=Shelves::onlyTrashed()->where('id',$id);
+        $shelves->forcedelete();
+        return redirect('/shelves/bin');
     }
 }

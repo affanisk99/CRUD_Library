@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,4 +30,22 @@ Route::get('/', function () {
 		Route::get('edit/{id}','shelvesController@edit')->name('shelves.edit');
 		Route::post('update/{id}','shelvesController@update')->name('shelves.update');
 		Route::get('destroy/{id}','shelvesController@destroy')->name('shelves.destroy');
+		Route::get('bin','shelvesController@bin')->name('shelves.bin');
+		Route::get('rollback/{id}','shelvesController@rollback')->name('shelves.rollback');
+		Route::get('delete/{id}','shelvesController@delete')->name('shelves.delete');
 	});
+
+	Route::prefix('books')->group(function(){
+		Route::get('/', 'booksController@index')->name('books.index');;
+		Route::get('create','booksController@create')->name('books.create');
+		Route::post('store','booksController@store')->name('books.store');
+		Route::get('edit/{id}','booksController@edit')->name('books.edit');
+		Route::post('update/{id}','booksController@update')->name('books.update');
+		Route::get('destroy/{id}','booksController@destroy')->name('books.destroy');
+		Route::get('bin','booksController@bin')->name('books.bin');
+		Route::get('rollback/{id}','booksController@rollback')->name('books.rollback');
+		Route::get('delete/{id}','booksController@delete')->name('books.delete');
+	});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

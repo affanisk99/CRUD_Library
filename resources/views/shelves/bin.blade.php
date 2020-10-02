@@ -4,11 +4,10 @@
 	<title>Library</title>
 </head>
 <body>	
-	<h1>Rak Buku</h1>
+	<h1>BIN heRak Buku</h1>
 	<table border="1">
 		<a href="/">MENU</a><br/>
-		<br/><a href="{{route('shelves.bin')}}">Bin</a>
-		<br/><a href="{{route('shelves.create')}}">Tambah Rak</a>
+		<br/><a href="{{route('shelves.index')}}">Kembali</a>
 	<tr>
 		<th>ID</th>
 		<th>Code</th>
@@ -21,8 +20,8 @@
 		<td>{{$shv->code}}</td>
 		<td>{{$shv->description}}</td>
 		<td>
-			<a href="{{route('shelves.edit', $shv->id)}}">Edit</a>
-			<a href="{{route('shelves.delete', $shv->id)}}">Hapus</a>
+			<a href="{{route('shelves.rollback', $shv->id)}}">Rollback</a>
+			<a href="{{route('shelves.destroy', $shv->id)}}">Delete Permanent</a>
 		</td>
 	</tr>
 	@endforeach
