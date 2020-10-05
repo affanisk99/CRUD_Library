@@ -81,7 +81,13 @@ class RegisterController extends Controller
         // jangan lupa bersihkan/matikan dd()
         // dd($code);
         $data['code']=$code;
-        
+
+        // menentukan tanggal hari ini
+        $current_date = now();
+
+        // menambahkan tanggal ini dengan 1 tahun masa berlaku
+        $exp_date = $current_date->addYear()->format('Y-m-d H:i:s');
+
         return User::create([
              'name' => $data['name'],
              'username'=> $data['username'],
@@ -100,6 +106,9 @@ class RegisterController extends Controller
              // tanggal otomatis terbentuk saat dibuat
              'join_date'=> date('Y-m-d H:i:s'),
              'password' => Hash::make($data['password']),
+
+             // tanggal kadaluarsa
+             'expired_date' => $exp_date
         ]);
     }
 }
