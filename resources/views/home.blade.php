@@ -14,7 +14,14 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <!-- Buatkan daftar buku yang di pinjam oleh user yang bersangkutan, buat lisnya di bawah ini pakai tabel-->
+                    <table>
+                        <tr>
+                            <td>#</td>
+                            <td>Nama Buku</td>
+                            <td>Tanggal Pinjam</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

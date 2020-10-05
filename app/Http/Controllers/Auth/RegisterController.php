@@ -55,8 +55,8 @@ class RegisterController extends Controller
             'address' => ['required', 'string', 'max:50'],
             'phone' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'is_active' => ['required', 'string'],
-            'join_date' => ['required', 'string'],
+            // 'is_active' => ['required', 'string'],
+            // 'join_date' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             ''
         ]);
@@ -78,7 +78,8 @@ class RegisterController extends Controller
             $newID=$lastid->id+'1';
         }
         $code = 'LIB-'.date('y').'-'.$newID;
-        dd($code);
+        // jangan lupa bersihkan/matikan dd()
+        // dd($code);
         $data['code']=$code;
         
         return User::create([
@@ -87,8 +88,17 @@ class RegisterController extends Controller
              'address'=> $data['address'],
              'phone'=> $data['phone'],
              'email' => $data['email'],
-             'is_active'=> $data['is_active'],
-             'join_date'=> $data['join_date'],
+
+             // code masukan di array create ini
+             'code' => $code,
+
+             // tidak perlu, karena perlu verrifikasi oleh admin
+             // di database field is_active bertipe enum dengan data 'yes' dan 'no' serta defaultnya adalah 'no' sehingga saat di create
+             // otomatis user akan memiliki status 'no'
+             // 'is_active'=> $data['is_active'],
+
+             // tanggal otomatis terbentuk saat dibuat
+             'join_date'=> date('Y-m-d H:i:s'),
              'password' => Hash::make($data['password']),
         ]);
     }
